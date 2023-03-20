@@ -1,0 +1,52 @@
+,position,position_index,meaning,abbr,type1,type2
+0,1,0,state,S,,
+1,1,0,region,R,,
+2,1,0,district,D,,
+3,2,1,Domain,D,Student Groups Available for STAAR Assessment Data,
+4,2,1,New,N,Student Groups Available for STAAR Assessment Data,
+5,"2,3",1:3,All Students ,DA,Student Groups Available for STAAR Assessment Data,Student Groups
+6,"2,3",1:3, African American ,DB,Student Groups Available for STAAR Assessment Data,Student Groups
+7,"2,3",1:3, Hispanic ,DH,Student Groups Available for STAAR Assessment Data,Student Groups
+8,"2,3",1:3, White ,DW,Student Groups Available for STAAR Assessment Data,Student Groups
+9,"2,3",1:3, American Indian ,DI,Student Groups Available for STAAR Assessment Data,Student Groups
+10,"2,3",1:3, Asian ,D3,Student Groups Available for STAAR Assessment Data,Student Groups
+11,"2,3",1:3, Pacific Islander ,D4,Student Groups Available for STAAR Assessment Data,Student Groups
+12,"2,3",1:3, Two or More Races ,D2,Student Groups Available for STAAR Assessment Data,Student Groups
+13,"2,3",1:3, Current Special Ed ,DS,Student Groups Available for STAAR Assessment Data,Student Groups
+14,"2,3",1:3, Former Special Ed ,NS,Student Groups Available for STAAR Assessment Data,Student Groups
+15,"2,3",1:3, Continuously Enrolled ,NC,Student Groups Available for STAAR Assessment Data,Student Groups
+16,"2,3",1:3, Non-Continuously Enrolled ,NM,Student Groups Available for STAAR Assessment Data,Student Groups
+17,"2,3",1:3, Economically Disadvantaged ,DE,Student Groups Available for STAAR Assessment Data,Student Groups
+18,"2,3",1:3, Current & Monitored EB/EL ,D0,Student Groups Available for STAAR Assessment Data,Student Groups
+19,"2,3",1:3,At-Risk ,DR,Student Groups Available for STAAR Assessment Data,Student Groups
+20,"2,3",1:3, Male ,DM,Student Groups Available for STAAR Assessment Data,Student Groups
+21,"2,3",1:3, Female ,DF,Student Groups Available for STAAR Assessment Data,Student Groups
+22,"2,3",1:3, EB/EL ,DL,Student Groups Available for STAAR Assessment Data,Student Groups
+23,"2,3",1:3,Total Bilingual Education ,DU,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+24,"2,3",1:3, Transitional Bilingual/Early Exit ,DJ,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+25,"2,3",1:3, Transitional Bilingual/Late Exit ,DK,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+26,"2,3",1:3, Dual Language Immersion/Two-Way ,DQ,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+27,"2,3",1:3, Dual Language Immersion/One-Way ,DT,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+28,"2,3",1:3, ALP Bilingual ,Exception ,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+29,"2,3",1:3, Total ESL ,DC,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+30,"2,3",1:3, ESL/Content-Based ,DX,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+31,"2,3",1:3, ESL/Pull-Out ,DY,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+32,"2,3",1:3, ALP ESL ,Waiver ,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+33,"2,3",1:3, EB/EL with Parental Denial ,DZ,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+34,"2,3",1:3, Never EB/EL ,NN,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+35,"2,3",1:3, Total EB/EL ,Current ,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+36,"2,3",1:3, Monitored & Former EB/EL ,NT,Student Groups Available for STAAR Assessment Data,BE/ESL Student Groups
+37,2,1, All Students ,A,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+38,2,1, African American ,B,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+39,2,1, Hispanic ,H,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+40,2,1, White ,W,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+41,2,1, American Indian ,I,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+42,2,1, Asian ,3,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+43,2,1, Pacific Islander ,4,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+44,2,1, Two or More Races ,2,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+45,2,1, Special Ed ,S,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+46,2,1, Economically Disadvantaged ,E,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+47,2,1, EB/EL ,L,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+48,2,1, At-Risk ,R,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+49,2,1, Male ,M,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
+50,2,1, Female ,F,"Student Groups Available for Postsecondary, Attendance, and Graduation Data",Student Groups
