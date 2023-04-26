@@ -1,27 +1,85 @@
-# Capstone Project: Impact Primary/Secondary Education
+# Capstone Project: Financial Analysis Based on School Districts
 
-## Project Objective: Leverage web-scraping and NLP to extract key performance indicators for municipal issuers
+> Vanderbilt University, Master of Data Science, Capstone Project
 
- 
+# Project Overview
+This project aimed to support Alliance Bernstein in their implementation of a new investment management strategy known as School District Impact, which prioritizes responsible investing to generate environmental and social impact in historically marginalized communities. Specifically, the project aimed to systematically compile key performance indicators that are essential to achieving the School District Impact mission, analyzing data over a five-year period to identify any positive or negative trends.
 
-The Municipal Bond Market is not a financial market known for its transparency or consistency of reporting. Our $5 trillion-dollar market is spread out across 40,000 issuers, the majority of which are public government entities that can range from billion-dollar public transit systems to local school districts to cities with populations of a few thousand people. The Muni market has been one of the markets that was slower to adapt to new technologies and implement non-trading specific data into their day-to-day operations, this has changed over the last few years but continues to run into the issue of data dislocation and scalability. Up until recently the focus has been on scaling financial data. Muni debt issuers still communicate with their investors through hundred-page legal documents that have little standardization from issuer to issuer. The focus of the industry in extracting information from these documents systematically has been related to the financial metrics. This project is looking to go past the financial reporting and looking to systematically compile other key performance indicators that the issuers are currently not legally required to report but we believe essential to the Municipal Impact team’s mission.
+To study the impact of the school district on external housing prices, we selected graduation rates as our target variable. We developed useful functions to find metrics and districts based on provided IDs to help retrieve required items quickly. The data processing step involved removing NA values and checking for outliers.
 
- 
+The results varied greatly depending on the data and model used in the analysis. However, we found that the graduation rate has a significant impact on housing prices.
 
-For this project you'll be working with the Data Science team as well as the Municipal Impact Portfolio Management and Research teams. Municipal Impact is one of our fast-growing investment management strategies which is focused on responsible investing. The Municipal Impact product seeks to deliver environmental and social impact in historically marginalized communities to reduce gaps that exist in areas like academic achievement, economic development and healthcare while generating superior financial returns. To achieve this goal, the portfolio management team needs to look beyond the financial information of the debt issuer. The team has identified key performance indicators they use to track the results of a given investment to determine beyond the investment's financial performance if they are using the funds appropriately, living up to their stated mission, and improving the lives of these marginalized communities. Ultimately, we believe that our Impact analysis will allow us to identify issuers that can outperform the market in the long term.
+# Structure
 
- 
+```bash
+├── TX_data
+│   ├── HousePrice
+│   ├── datadict
+│   │   ├── district_processed
+│   │   │   ├── datadict_district_year.csv
+│   ├── TAPR_District
+│   │   ├── TAPR_year.csv
+│   │   ├── year
+│   │   │   ├── report.csv
+├── CA_data
+│   ├── different report types
+│   │   ├── sub-reports
+│   │   │   ├── year
+│   │   │   │   ├── num+county.csv
+├── code
+├── README.md
+```
 
-Conducting this extra layer of analysis can prove to be difficult. Currently the issuers are not legally required to report the type of data we deem necessary for our analysis, and most of the time will have no mention of it in any of their legal filings. This has led us to seek the data through governmental entities and other sources and that is where this project comes in. The data we are tracking can be dispersed across multiple reporting organizations or only reported by each entity independently if it is in the public domain at all. The issue exacerbates itself by the fact that different entities are operating in different industries which means we need different types of information for each. For example, when considering a school district, the student's test results are important but looking at a public electric company requires a completely different data set. As we are dealing with governmental entities, there is the additional difficulty of different states or governments deeming different levels of reporting to be sufficient.  Our team has identified external sources of non-financial data we are looking to systematically scrape and make consumable internally to keep our analysis as up to date as possible. Additionally, we are looking to analyze this data over a 5-year period to identify any positive or negative trends. We are looking for a collaborative partner to better our analysis through data discovery. The Impact team has a strong commitment to help underserved communities and has always looked for way to better identify communities in need.
 
- 
+# Quickstart
+1. Download all package
+    ```bash
+    python3 -r install requirement.txt
+    ```
+2. (optional) obtain data California's data
+    ```bash
+    python3 21_CA_webscraper .py
+    ```
+3. (optional) obtain data Texas's data
+    run `10_TX_crawler.ipynb` notebook.
 
-## Technical skills leveraged
-Python, web-scraping, text-mining, NLP, question-answering techniques, data storage for unstructured data
+4. Data analyze
 
-## Reference Link
+    run `40_HousePriceVS GraduationRate.ipynb` notebook.
+
+# Data
+Obtain by web crawl from scratch. Check code for details. 
+
+* [10_TX_crawler.ipynb](/10_TX_crawler.ipynb)
+* [21_CA_webscraper .py](/21_CA_webscraper.py)
 
 
-## Concat
 
-Hongyu Dai, hongyu.dai@vanderbilt.edu
+# Results
+
+
+Based on the analysis and findings presented, there is a strong relationship between school district quality and housing prices. The research shows that higher graduation rates and other education-related metrics are associated with higher housing prices, indicating that investing in education can have positive impacts on the housing market.
+
+Overall, the findings of this research can be used to inform policymakers and investors in making informed decisions regarding housing and education investments, ultimately leading to positive outcomes for school district and the economy.
+
+
+# Future work
+- Improve pipeline to cover more functionality
+- Try more models to improve its accuracy
+- Further analyze the impact of Covid-19 on the housing market and explore other potential factors that may have been affected by the pandemic.
+- Conduct further research to explore the relationship between graduation rates and housing prices in other regions and contexts.
+- Explore other potential factors that may impact housing prices, such as diversity rates, Dropout Rate, and Extended Longitudinal Rate, and consider incorporating them into future analyses.
+
+
+# Reference
+1. [Texas Education Agency](https://tea.texas.gov/texas-schools)
+2. [California Department of Education](https://dq.cde.ca.gov/dataquest/)
+3. [House Price Data](https://www.redfin.com/news/data-center/)
+
+# Concat
+
+Hongyu Dai _hongyu.dai@foxmail.edu_
+
+
+* Feel free to contact with any questions or if you are interested in contributing!
+
