@@ -1,0 +1,106 @@
+---
+title: "50_TX_Model"
+output: html_notebook
+---
+
+
+
+
+```{r, message=FALSE}
+library(lmtest)
+library(sandwich)
+library(data.table)
+library(stargazer)
+``` 
+
+
+# dataset: graduate rate >= 75 
+
+
+```{r}
+large75 <- fread('/Users/dai/Desktop/ab/large75.csv')
+head(large75)
+``` 
+
+
+```{r}
+l1 <- large75[ , lm(median_ppsf ~ graduate_rate )]
+l2 <- large75[ , lm(median_ppsf ~ graduate_rate+as.factor(year)+graduate_rate*as.factor(year))]
+l3 <- large75[ , lm(median_ppsf ~ graduate_rate+as.factor(year)+graduate_rate*as.factor(year)+as.factor(DISTRICT)+as.factor(zipcode))]
+
+l1
+l2
+#l3
+summary(l3)
+```
+
+```{r}
+l1$vcovCL2_ <- vcovCL(l1, cluster = large75[ , .(zipcode,DISTRICT)])
+l1$cluster2.se <- sqrt(diag(l1$vcovCL2_))
+
+l2$vcovCL2_ <- vcovCL(l2, cluster = large75[ , .(zipcode,DISTRICT)])
+l2$cluster2.se <- sqrt(diag(l2$vcovCL2_))
+
+l3$vcovCL2_ <- vcovCL(l3, cluster = large75[ , .(zipcode,DISTRICT)])
+l3$cluster2.se <- sqrt(diag(l3$vcovCL2_))
+
+
+stargazer(l1, l2, l3,
+          type = 'text', 
+          se = list(l1$cluster2.se, 
+                    l2$cluster2.se,
+                    l3$cluster2.se),
+          add.lines = list(
+            c('robust clustered se ','m1', 'm2','m3')
+          ),
+          header=F)
+```
+
+
+
+
+
+
+# dataset: graduate rate < 75 
+
+
+```{r}
+small75 <- fread('/Users/dai/Desktop/ab/small75.csv')
+head(small75)
+```
+
+
+```{r}
+m1 <- small75[ , lm(median_ppsf ~ graduate_rate )]
+m2 <- small75[ , lm(median_ppsf ~ graduate_rate+as.factor(year)+graduate_rate*as.factor(year))]
+m3 <- small75[ , lm(median_ppsf ~ graduate_rate+as.factor(year)+graduate_rate*as.factor(year)+as.factor(DISTRICT)+as.factor(zipcode))]
+
+m1
+m2
+#m3
+summary(m3)
+```
+
+
+```{r}
+m1$vcovCL2_ <- vcovCL(m1, cluster = small75[ , .(zipcode,DISTRICT)])
+m1$cluster2.se <- sqrt(diag(m1$vcovCL2_))
+
+m2$vcovCL2_ <- vcovCL(m2, cluster = small75[ , .(zipcode,DISTRICT)])
+m2$cluster2.se <- sqrt(diag(m2$vcovCL2_))
+
+m3$vcovCL2_ <- vcovCL(m3, cluster = small75[ , .(zipcode,DISTRICT)])
+m3$cluster2.se <- sqrt(diag(m3$vcovCL2_))
+
+
+stargazer(m1, m2, m3,
+          type = 'text', 
+          se = list(m1$cluster2.se, 
+                    m2$cluster2.se,
+                    m3$cluster2.se),
+          add.lines = list(
+            c('robust clustered se ','m1', 'm2','m3')
+          ),
+          header=F)
+``` 
+
