@@ -1,6 +1,8 @@
 ---
 title: "50_TX_Model"
-output: html_notebook
+output:
+  html_document:
+    df_print: paged
 ---
 
 
@@ -18,7 +20,7 @@ library(stargazer)
 
 
 ```{r}
-large75 <- fread('/Users/dai/Desktop/ab/large75.csv')
+large75 <- fread('TX_data/large75.csv')
 head(large75)
 ``` 
 
@@ -51,7 +53,7 @@ stargazer(l1, l2, l3,
                     l2$cluster2.se,
                     l3$cluster2.se),
           add.lines = list(
-            c('robust clustered se ','m1', 'm2','m3')
+            c('robust clustered se ','l1', 'l2','l3')
           ),
           header=F)
 ```
@@ -65,7 +67,7 @@ stargazer(l1, l2, l3,
 
 
 ```{r}
-small75 <- fread('/Users/dai/Desktop/ab/small75.csv')
+small75 <- fread('TX_data/small75.csv')
 head(small75)
 ```
 
