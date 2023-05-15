@@ -2,12 +2,10 @@
 
 import pandas as pd
 import time
-
+import re
+import os
 import requests
 from bs4 import BeautifulSoup as bs
-import re
-from selenium.webdriver.common.action_chains import ActionChains
-import os
 
 # selenium==4.2.0 
 from selenium import webdriver
@@ -17,6 +15,8 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.chrome.service import Service
+from selenium.webdriver.common.action_chains import ActionChains
+
 
 # get all county
 county_url='https://dq.cde.ca.gov/dataquest/page2.asp?level=County&subject=Enrollment&submit1=Submit'

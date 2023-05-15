@@ -1,10 +1,9 @@
 import pandas as pd
 import time
 import requests
-from bs4 import BeautifulSoup as bs
-import re
-from selenium.webdriver.common.action_chains import ActionChains
 import os
+import re
+from bs4 import BeautifulSoup as bs
 
 # selenium==4.2.0 
 from selenium import webdriver
@@ -14,6 +13,7 @@ from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
+from selenium.webdriver.common.action_chains import ActionChains
 
 
 # Load the variables from the file
@@ -113,7 +113,6 @@ def table_download(driver,filepath):
             sheet_names.extend(header[2:])
             
         if len(sheet_names) != len(dfs):
-            #for i in range(abs(len(sheet_names)-len(dfs))):
             for i in range(len(sheet_names), len(dfs)):
                 sheet_name = f"sheet{i+1}"
                 sheet_names.insert(0, sheet_name)
@@ -147,7 +146,6 @@ def download_ca_t2(step3,subject,cCounty,year):
             folder_path=os.path.join('/Users/dai/Desktop/Capstone-AllianceBernstein/CA_data/',subject,option,year)
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
-            #print(folder_path) #
                 
             option_element = driver.find_element(by=By.XPATH, value=f"//input[@value='{option}']")
             option_element.click()
@@ -228,28 +226,21 @@ for ind in df1.iloc[list(range(1,14))+[-2],:].index:
             try:
                 if subject=='SpecEd':
                     step3='https://dq.cde.ca.gov/dataquest/SearchName.asp?rbTimeFrame=oneyear&rYear={}&cCounty={}&Topic={}&Level={}&submit1=Submit'.format(year,cCounty,subject,level) 
-                    #https://dq.cde.ca.gov/dataquest/SearchName.asp?rbTimeFrame=oneyear&rYear=2018-19&cCounty=01+ALAMEDA&Topic=SpecEd&Level=County&submit1=Submit
                     download_ca_SpecEd(step3,subject,year,cCounty)  
                 elif subject=='Foster':
                     reports=['fosterGrdEnrl','fosterGrdRace']
                     for report in reports:
                         step4='https://dq.cde.ca.gov/dataquest/{}/{}.aspx?level={}&cds={}&year={}'.format(subject,report,level,cds,year)
-                        #https://dq.cde.ca.gov/dataquest/foster/fosterGrdEnrl.aspx?level=County&cds=01&year=2020-21
-                        #https://dq.cde.ca.gov/dataquest/foster/fosterGrdRace.aspx?level=County&county=01&year=2020-21
                         download_ca_s4(step4,subject,cCounty,year,report)      
                 elif subject =='Paif':
                     reports=['StfFteClassified','StfFteClassifiedLevels']
                     for report in reports:
                         step4='https://dq.cde.ca.gov/dataquest/dqcensus/{}.aspx?cds={}&agglevel={}&year={}'.format(report,cds,level,year)
-                        #https://dq.cde.ca.gov/dataquest/dqcensus/StfFteClassified.aspx?cds=01&agglevel=County&year=2021-22
-                        #https://dq.cde.ca.gov/dataquest/dqcensus/StfFteClassifiedLevels.aspx?cds=01&agglevel=County&year=2021-22
                         download_ca_s4(step4,subject,cCounty,year,report)
                 elif subject=='FPRM':
                     step4='https://dq.cde.ca.gov/dataquest/Cbeds2.asp?FreeLunch=on&cChoice=CoProf2&cYear={}&TheCounty={}&cLevel=County&cTopic={}&myTimeFrame=S&submit1=Submit'.format(year,cCounty,subject)
-                    #https://dq.cde.ca.gov/dataquest/Cbeds2.asp?FreeLunch=on&cChoice=CoProf2&cYear=2021-22&TheCounty=01%2CALAMEDA&cLevel=County&cTopic=FRPM&myTimeFrame=S&submit1=Submit
                     download_ca_s4(step4,subject,cCounty,year,report=None)
                 elif subject=='Hires':
-                    #https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=01&agglevel=County&year=2022-23
                     step4='https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode={}&agglevel={}&year={}'.format(cds,level,year)
                     download_ca_s4(step4,subject,cCounty,year,report=None)
                 else:    
@@ -263,8 +254,9 @@ for ind in df1.iloc[list(range(1,14))+[-2],:].index:
                 driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver', options=chrome_options)
 
 
+### After running the data, a report information that failed to download will be output. Provided code for easy re downloading of missing parts
 driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver')
-#missing_list='LC 2017-18 02+ALPINE'
+#missing_list='LC 2017-18 02+ALPINE' 
 
 if missing_list!='':
     missing_list2=''
@@ -277,28 +269,21 @@ if missing_list!='':
         try:
             if subject=='SpecEd':
                 step3='https://dq.cde.ca.gov/dataquest/SearchName.asp?rbTimeFrame=oneyear&rYear={}&cCounty={}&Topic={}&Level={}&submit1=Submit'.format(year,cCounty,subject,level) 
-                #https://dq.cde.ca.gov/dataquest/SearchName.asp?rbTimeFrame=oneyear&rYear=2018-19&cCounty=01+ALAMEDA&Topic=SpecEd&Level=County&submit1=Submit
                 download_ca_SpecEd(step3,subject,year,cCounty)  
             elif subject=='Foster':
                 reports=['fosterGrdEnrl','fosterGrdRace']
                 for report in reports:
                     step4='https://dq.cde.ca.gov/dataquest/{}/{}.aspx?level={}&cds={}&year={}'.format(subject,report,level,cds,year)
-                    #https://dq.cde.ca.gov/dataquest/foster/fosterGrdEnrl.aspx?level=County&cds=01&year=2020-21
-                    #https://dq.cde.ca.gov/dataquest/foster/fosterGrdRace.aspx?level=County&county=01&year=2020-21
                     download_ca_s4(step4,subject,cCounty,year,report)      
             elif subject =='Paif':
                 reports=['StfFteClassified','StfFteClassifiedLevels']
                 for report in reports:
                     step4='https://dq.cde.ca.gov/dataquest/dqcensus/{}.aspx?cds={}&agglevel={}&year={}'.format(report,cds,level,year)
-                    #https://dq.cde.ca.gov/dataquest/dqcensus/StfFteClassified.aspx?cds=01&agglevel=County&year=2021-22
-                    #https://dq.cde.ca.gov/dataquest/dqcensus/StfFteClassifiedLevels.aspx?cds=01&agglevel=County&year=2021-22
                     download_ca_s4(step4,subject,cCounty,year,report)
             elif subject=='FPRM':
                 step4='https://dq.cde.ca.gov/dataquest/Cbeds2.asp?FreeLunch=on&cChoice=CoProf2&cYear={}&TheCounty={}&cLevel=County&cTopic={}&myTimeFrame=S&submit1=Submit'.format(year,cCounty,subject)
-                #https://dq.cde.ca.gov/dataquest/Cbeds2.asp?FreeLunch=on&cChoice=CoProf2&cYear=2021-22&TheCounty=01%2CALAMEDA&cLevel=County&cTopic=FRPM&myTimeFrame=S&submit1=Submit
                 download_ca_s4(step4,subject,cCounty,year,report=None)
             elif subject=='Hires':
-                #https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode=01&agglevel=County&year=2022-23
                 step4='https://dq.cde.ca.gov/dataquest/dqcensus/StfTchHires.aspx?cdcode={}&agglevel={}&year={}'.format(cds,level,year)
                 download_ca_s4(step4,subject,cCounty,year,report=None)
             else:    

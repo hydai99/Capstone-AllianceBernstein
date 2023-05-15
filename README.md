@@ -1,6 +1,8 @@
 # Capstone Project: Financial Analysis Based on School Districts
 
-> Vanderbilt University, Master of Data Science, Capstone Project
+Vanderbilt University, Master of Data Science, Capstone Project
+
+by Hongyu Dai
 
 # Project Overview
 This project aimed to support Alliance Bernstein in their implementation of a new investment management strategy known as School District Impact, which prioritizes responsible investing to generate environmental and social impact in historically marginalized communities. Specifically, the project aimed to systematically compile key performance indicators that are essential to achieving the School District Impact mission, analyzing data over a five-year period to identify any positive or negative trends.
@@ -26,37 +28,40 @@ The results varied greatly depending on the data and model used in the analysis.
 │   │   ├── sub-reports
 │   │   │   ├── year
 │   │   │   │   ├── num+county.csv
-├── code
+├── Codes
+├── WebScraperDocumentation.md
 ├── README.md
 ```
 
 
 # Quickstart
-1. Download all package
+1. Download all packages.
     ```bash
     python3 -r install requirement.txt
     ```
-2. (optional) obtain data California's data
+
+2. (Optional) Obtain Texas's data.
+    run `10+20_TX_WebScraper+Map.ipynb` notebook.
+
+3. (Optional) Obtain California's data.
     ```bash
-    python3 21_CA_webscraper .py
+    python3 11.2_CA_webscraper.py
     ```
-3. (optional) obtain data Texas's data
-    run `10_TX_crawler.ipynb` notebook.
 
-4. Data analyze
-
-    run `40_HousePriceVS GraduationRate.ipynb` notebook.
+4. Data analyze.
+    - `40_TX_DataAnalysis.ipynb`
+    - `50_TX_Model.rmd`
 
 # Data
-Obtain by web crawl from scratch. Check code for details. 
+Obtain by web crawl from scratch. Check codes for details. 
 
-* [10_TX_crawler.ipynb](/10_TX_crawler.ipynb)
-* [21_CA_webscraper .py](/21_CA_webscraper.py)
+- [Web Scraper Documentation](/WebScraperDocumentation.md)
+- [10+20_TX_WebScraper+Map](/10+20_TX_WebScraper+Map.ipynb)
+- [11.2_CA_webscraper](/11.2_CA_webscraper.py)
 
 
 
 # Results
-
 
 Based on the analysis and findings presented, there is a strong relationship between school district quality and housing prices. The research shows that higher graduation rates and other education-related metrics are associated with higher housing prices, indicating that investing in education can have positive impacts on the housing market.
 
