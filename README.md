@@ -37,7 +37,7 @@ The results varied greatly depending on the data and model used in the analysis.
 # Quickstart
 1. Download all packages.
     ```bash
-    python3 -r install requirement.txt
+    pip3 install -r requirements.txt
     ```
 
 2. (Optional) Obtain Texas's data.
@@ -51,6 +51,9 @@ The results varied greatly depending on the data and model used in the analysis.
 4. Data analyze.
     - `40_TX_DataAnalysis.ipynb`
     - `50_TX_Model.rmd`
+
+5. Copyable crawler code and related knowledge.
+   - [Web Scraper Documentation](/WebScraperDocumentation.md)
 
 # Data
 Obtain by web crawl from scratch. Check codes for details. 

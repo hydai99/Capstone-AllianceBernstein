@@ -80,7 +80,14 @@ Here is an example from the last chunk of `00_TX_initial_crawler.ipynb`.
 
 This type of web scraping is suitable for websites where the final data page does not provide a download button or where it is challenging to find a common pattern from the URL. Selenium is a powerful library that allows automation of browser actions and interaction with web elements. Here are the steps to set up and use Selenium for web scraping:
 
-1. Set up Selenium by installing the library and configuring the webdriver for your chosen browser. For example, to set up Selenium with Chrome:
+1. Download the corresponding browser version of Selenium. Take Chrome browser as an example, [link of ChromeDriver](https://chromedriver.chromium.org/downloads).
+2. Configuring the webdriver for your chosen browser.
+   
+   Extract the downloaded file and store it in the path where the repository is located. Open the `chromedriver.exe` file by the terminal. 
+   - If you see the message `ChromeDriver was started successfully`, it indicates that the configuration was successful. 
+   - Otherwise, try running the command `xattr -d com.apple.quarantine /usr/local/bin/chromedriver`.
+
+3. Set up Selenium by installing the library. For example, to set up Selenium with Chrome:
 
    ```python
    !pip install selenium==4.2.0 
@@ -98,7 +105,7 @@ This type of web scraping is suitable for websites where the final data page doe
    driver = webdriver.Chrome(executable_path='/your/path/to/chromedriver', options=chrome_options)
    ```
 
-2. Familiarize yourself with some commonly used commands in Selenium:
+4. Familiarize yourself with some commonly used commands in Selenium:
 - Navigate to a specified link using `driver.get(link)`.
 - Click on elements such as buttons or radio buttons. To do this, you need to identify the XPath corresponding to the element you want to click using the browser's Developer Tools. Once you have the XPath, you can define it as a variable and use the `.click()` method to click the button. For example:
 

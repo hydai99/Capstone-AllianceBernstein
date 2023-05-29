@@ -1,22 +1,11 @@
-# Get report & county information, save those information to pickle
+'''
+Get report & county information, save those information to pickle
+'''
 
 import pandas as pd
-import time
-import re
-import os
 import requests
 from bs4 import BeautifulSoup as bs
-
-# selenium==4.2.0 
-from selenium import webdriver
-from selenium.webdriver.support.ui import Select
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.chrome.service import Service
-from selenium.webdriver.common.action_chains import ActionChains
-
+import pickle
 
 # get all county
 county_url='https://dq.cde.ca.gov/dataquest/page2.asp?level=County&subject=Enrollment&submit1=Submit'
@@ -59,12 +48,8 @@ for select in soup.find_all('select'):
 df1 = pd.DataFrame(options)
 df1 = df1.loc[df1['exist_year'].apply(lambda x: len(x) > 0),:]
 
-#df1.to_csv('CA_data/base_information.csv')
-
-    
 # save data
-import pickle
 data = (df1, cCountys)
 bytes_data = pickle.dumps(data)
-with open("CA_data/variables3.pickle", "wb") as f:
+with open("CA_data/variables.pickle", "wb") as f:
     f.write(bytes_data)

@@ -1,19 +1,14 @@
 import pandas as pd
 import time
-import requests
 import os
-import re
-from bs4 import BeautifulSoup as bs
-
-# selenium==4.2.0 
 from selenium import webdriver
-from selenium.webdriver.support.ui import Select
 from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.webdriver.common.by import By
 from selenium.webdriver.chrome.options import Options
 from selenium.common.exceptions import TimeoutException
 from selenium.webdriver.common.action_chains import ActionChains
+from selenium.webdriver.chrome.service import Service
 
 
 # Load the variables from the file
@@ -37,7 +32,7 @@ def download_ca_SpecEd(step3,subject,year,cCounty):
         submit_button.click()
         
         # Step4: Get into the last website
-        folder_path=os.path.join('/Users/dai/Desktop/Capstone-AllianceBernstein/CA_data/',subject,option,year)
+        folder_path=os.path.join('CA_data/',subject,option,year)
         if not os.path.exists(folder_path):
             os.makedirs(folder_path)
         
@@ -65,7 +60,7 @@ def download_ca_s4(step4,subject,cCounty,year,report=None):
         if not df.empty:
             dfs.append(df)
             
-    folder_path=os.path.join('/Users/dai/Desktop/Capstone-AllianceBernstein/CA_data/',subject)  
+    folder_path=os.path.join('CA_data/',subject)  
     if report:
         folder_path=os.path.join(folder_path,report)
         
@@ -143,7 +138,9 @@ def download_ca_t2(step3,subject,cCounty,year):
         if value+' (with district data)' in values_list or value+' (with dist. data)' in values_list:
             pass
         else:  # web scarping
-            folder_path=os.path.join('/Users/dai/Desktop/Capstone-AllianceBernstein/CA_data/',subject,option,year)
+            #folder_path=os.path.join('/Users/dai/Desktop/Capstone-AllianceBernstein/CA_data/',subject,option,year)
+            folder_path=os.path.join( os.getcwd(),'CA_data/',subject,option,year)
+
             if not os.path.exists(folder_path):
                 os.makedirs(folder_path)
                 
@@ -212,8 +209,9 @@ def download_ca_t2(step3,subject,cCounty,year):
     
 chrome_options = Options()
 chrome_options.add_argument('--headless')
-driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver', options=chrome_options)
-#driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver')
+chrome_service = Service('chromedriver_mac_arm64/chromedriver')
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+
 missing_list=''
 
 level='County'
@@ -251,12 +249,15 @@ for ind in df1.iloc[list(range(1,14))+[-2],:].index:
                 print(subject,year,cCounty)
                 missing_list = missing_list + subject  +' '+ year  +' '+ cCounty+'\n'
                 time.sleep(20) 
-                driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver', options=chrome_options)
+                driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+
+
 
 
 ### After running the data, a report information that failed to download will be output. Provided code for easy re downloading of missing parts
-driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver')
-#missing_list='LC 2017-18 02+ALPINE' 
+driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+
+#missing_list='LC 2017-18 02+ALPINE'  # example
 
 if missing_list!='':
     missing_list2=''
@@ -294,6 +295,7 @@ if missing_list!='':
             print(subject,year,cCounty)
             missing_list2 = missing_list2 + subject  +' '+ year  +' '+ cCounty+'\n'
             time.sleep(20) 
-            driver = webdriver.Chrome(executable_path='/Users/dai/Downloads/chromedriver_mac_arm64/chromedriver')         
+            driver = webdriver.Chrome(service=chrome_service, options=chrome_options)
+     
     print(missing_list2)
     missing_list=missing_list2
